@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { authService } from '../fbase';
+import { Link } from 'react-router-dom';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSignUp, setIsSignUp] = useState(false);
 
   const auth = authService.getAuth();
-
-  const toggleSignUp = () => {
-    setIsSignUp((prev) => !prev);
-  };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.name === 'id') {
@@ -22,10 +18,11 @@ const Auth = () => {
   const onSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     try {
-      if (isSignUp) {
-        await authService.createUserWithEmailAndPassword(auth, email, password);
-      } else {
-        await authService.signInWithEmailAndPassword(auth, email, password);
+      await authService.signInWithEmailAndPassword(auth, email, password);
+      const user = auth.currentUser;
+      if (user && !user.emailVerified) {
+        alert('이메일 인증 후 서비스 이용 가능합니다.')
+        auth.signOut();
       }
     } catch (err) {
       if (err instanceof Error) {
@@ -63,18 +60,12 @@ const Auth = () => {
           value={password}
           onChange={onChange}
         ></input>
-        {isSignUp ? (
-          <button type="submit">가입</button>
-        ) : (
-          <button type="submit">로그인</button>
-        )}
+        <button type="submit">로그인</button>
       </form>
       <div>
         <button onClick={googleSignIn}>Google 로그인</button>
       </div>
-      <span onClick={toggleSignUp} style={{ color: 'blue', cursor: 'pointer' }}>
-        {isSignUp ? 'Sign In' : 'Sign Up'}
-      </span>
+      <Link to="/signup">회원가입</Link>
     </>
   );
 };

@@ -9,6 +9,7 @@ const Home = ({ userObj }: { userObj: User | null }) => {
 
   const onSignOut = () => {
     authService.signOut(auth);
+    window.location.replace('/');
   };
 
   return (
