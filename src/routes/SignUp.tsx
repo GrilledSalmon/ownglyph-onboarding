@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { authService, dbService } from '../fbase';
 import { Link } from 'react-router-dom';
+import style from '../scss/signup.module.scss';
 
 const fsInstance = dbService.getFirestore();
 const userCollectionRef = dbService.collection(fsInstance, 'user');
@@ -75,52 +76,109 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <h2>회원가입</h2>
-      <form onSubmit={onSubmit}>
-        <div>
-          <input
-            type="text"
-            name="name"
-            placeholder="name"
-            value={name}
-            onChange={onChange}
-          ></input>
+    <div className={style['signup']}>
+      <div className={style['container']}>
+        <div className={style['box']}>
+          <div id={style['signup-title']}>회원가입</div>
         </div>
-        <div>
-          <input
-            type="email"
-            name="id"
-            placeholder="ID(email)"
-            value={email}
-            onChange={onChange}
-          ></input>
+        <div className={style['box']}>
+          <div id={style['signup-process']}>
+            <div className={style['process-1']}>1.정보입력</div>
+            <div className={style['process-2']}>2.이메일 인증</div>
+          </div>
         </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={onChange}
-          ></input>
+        <div className={style['box']}>
+          <div id={style['signup-content']}>
+            <form onSubmit={onSubmit}>
+              <div className={style['content-box']}>
+                <div className={style['box-title']}>이름</div>
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={onChange}
+                ></input>
+              </div>
+              <div className={style['content-box']}>
+                <div className={style['box-title']}>아이디(이메일)</div>
+                <input
+                  type="email"
+                  name="id"
+                  placeholder="example@example.com"
+                  value={email}
+                  onChange={onChange}
+                ></input>
+              </div>
+              <div className={style['content-box']}>
+                <div className={style['box-title']}>비밀번호</div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="영문, 숫자를 포함한 8자 이상의 비밀번호"
+                  value={password}
+                  onChange={onChange}
+                ></input>
+              </div>
+              <div className={style['content-box']}>
+                <div className={style['box-title']}>비밀번호 확인</div>
+                <input
+                  type="password"
+                  name="passwordCheck"
+                  value={passwordCheck}
+                  onChange={onChange}
+                ></input>
+              </div>
+              {!isPasswordSame && (
+                <div className={style['caution']}>
+                  * 비밀번호가 일치하지 않습니다.
+                </div>
+              )}
+
+              <div className={style['content-box']}>
+                <div className={style['signup-terms']}>
+                  <div className={style['agree-entire']}>
+                    <i className={style['check-image']}></i>
+                    약관 전체 동의
+                  </div>
+                  <ul>
+                    <li>
+                      <i className={style['check-image']}></i>
+                      <label htmlFor="term-check-age">
+                        (필수) 만 14세 이상입니다.
+                      </label>
+                      <input type="checkbox" id="term-check-age" />
+                    </li>
+                    <li>
+                      <i className={style['check-image']}></i>
+                      <label htmlFor="term-check-service">
+                        (필수) 온글잎 서비스 약관에 동의합니다.
+                      </label>
+                      <input type="checkbox" id="term-check-service" />
+                    </li>
+                    <li>
+                      <i className={style['check-image']}></i>
+                      <label htmlFor="term-check-indi">
+                        (필수) 개인정보 처리 방침에 동의합니다.
+                      </label>
+                      <input type="checkbox" id="term-check-indi" />
+                    </li>
+                    <li>
+                      <i className={style['check-image']}></i>
+                      <label htmlFor="term-check-promotion">
+                        (선택) 온글잎 프로모션 정보 수신에 동의합니다.
+                      </label>
+                      <input type="checkbox" id="term-check-promotion" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <button type="submit">다음</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <input
-            type="password"
-            name="passwordCheck"
-            placeholder="Password Check"
-            value={passwordCheck}
-            onChange={onChange}
-          ></input>
-        </div>
-        {!isPasswordSame && <div>비밀번호가 다릅니다.</div>}
-        <button type="submit">가입</button>
-      </form>
-      <div>
-        <Link to="/">홈으로</Link>
       </div>
-    </>
+    </div>
   );
 };
 

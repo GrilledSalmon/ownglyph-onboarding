@@ -1,0 +1,110 @@
+@import 'config';
+$container-width: 520px;
+$main-width: 350px;
+
+@mixin process {
+  text-align: center;
+
+  width: $main-width/2.3;
+  line-height: 40px;
+  height: 40px;
+}
+
+.signup {
+  .container {
+    width: $container-width;
+    margin: 0 auto;
+  }
+  .box {
+    width: 80%;
+    margin: 0 auto;
+    @include font-style;
+  }
+
+  #signup-title {
+    height: 100px;
+    margin-top: 50px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  #signup-process {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    .process-1 {
+      @include process;
+      border-bottom: 1px solid;
+    }
+
+    .process-2 {
+      @include process;
+      color: #cacaca;
+      border-bottom: 1px solid #cacaca;
+    }
+  }
+
+  .content-box {
+    margin-top: 15px;
+    .box-title {
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #cacaca;
+      border-radius: 3px;
+      font-size: 1rem;
+      text-indent: 5px;
+      background-color: #fff;
+    }
+  }
+
+  button {
+    @include button-style;
+    @include font-style;
+    color: #fff;
+    font-size: 1rem;
+    background-color: #ff8576;
+    width: 100%;
+    height: 44px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+  }
+
+  .caution {
+    margin-top: 6px;
+    color: #ff8576;
+    font-size: 0.9rem;
+  }
+
+  .signup-terms {
+    ul {
+      list-style-type: none;
+      margin: 10px 0 0 20px;
+      li {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 10px;
+        
+      }
+      input {
+        display: none;
+      }
+    }
+    .check-image {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 9px;
+      vertical-align: middle;
+
+      background-size: contain;
+      background: url(https://www.ownglyph.com/icons/check-button-empty.svg) no-repeat;
+    }
+  }
+}

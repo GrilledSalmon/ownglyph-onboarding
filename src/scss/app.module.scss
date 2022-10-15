@@ -1,0 +1,11 @@
+@import 'config';
+
+* {
+  margin: 0;
+  padding: 0;
+  background: $background-color;
+}
+
+#entire-wrap {
+  height: 100vh;
+}

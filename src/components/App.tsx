@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import AppRouter from './Router';
 import { authService } from '../fbase';
+import style from '../scss/app.module.scss';
 
 const auth = authService.getAuth();
 
@@ -15,7 +16,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div id={style['entire-wrap']}>
       <Header></Header>
       <AppRouter userObj={userObj}></AppRouter>
     </div>

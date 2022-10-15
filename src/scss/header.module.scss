@@ -1,0 +1,53 @@
+@import 'config';
+$margin-left: 30px;
+
+.header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 75px;
+
+  .container {
+    margin: 15px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+  }
+  
+  .logo {
+    background: url(https://www.ownglyph.com/icons/Ownglyph_logo.svg) no-repeat;
+    width: 150px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  nav {
+    display: flex;
+  }
+  
+  ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    @include font-style;
+  }
+  
+  li {
+    margin-left: $margin-left;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  button {
+    width: 80px;
+    height: 40px;
+    line-height: 25px;
+    border: none;
+    border-radius: 20px;
+    margin-left: $margin-left;
+    font-weight: bold;
+    font-size: 18px;
+    @include button-style;
+  }
+}

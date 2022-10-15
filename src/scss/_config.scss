@@ -1,0 +1,13 @@
+$main-color : #ff616a;
+$background-color : #fbfbf6;
+
+@mixin font-style {
+  color: black;
+  font-weight: bold;
+}
+
+@mixin button-style {
+  color: #fff;
+  background-color: $main-color;
+  cursor: pointer;
+}
